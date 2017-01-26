@@ -11,6 +11,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        $this->call(PetitionsTableSeeder::class);
     }
+}
+
+class PetitionsTableSeeder extends Seeder
+{
+  public function run()
+  {
+    App\Petition::truncate();
+
+    factory(App\Petition::class, 20)->create();
+  }
 }
