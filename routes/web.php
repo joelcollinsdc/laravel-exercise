@@ -16,3 +16,11 @@ Route::get('/', function () {
 });
 
 Route::get('petition/{id}', 'PetitionController@show');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
+
+Route::group(['prefix' => 'admin'], function () {
+  Route::resource('petition', 'AdminPetitionController');
+});

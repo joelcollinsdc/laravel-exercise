@@ -1,8 +1,8 @@
-@extends('layouts.application')
+@extends('layouts.app')
 
 @section('content')
 
-{{$petition->title}}
+<h1>{{$petition->title}}</h1>
 
 <p>
 {{$petition->body}}
