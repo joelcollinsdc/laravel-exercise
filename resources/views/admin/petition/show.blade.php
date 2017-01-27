@@ -21,7 +21,7 @@
       <dd>{{$petition->summary}}</dd>
 
       <dt>Body</dt>
-      <dd>{{$petition->body}}</dd>
+      <dd>{!! $petition->body !!}</dd>
     </dl>
 
     <a class="btn btn-default" href="{{ URL::route('petition.public', $petition->id) }}">View Publicly</a>

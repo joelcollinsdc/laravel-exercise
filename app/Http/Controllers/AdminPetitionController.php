@@ -149,7 +149,7 @@ class AdminPetitionController extends Controller
         $petition->save();
         return redirect()
             ->route('petition.show', $petition->id)
-            ->with('success','Petition created successfully');
+            ->with('success','Petition updated successfully');
     }
 
     /**

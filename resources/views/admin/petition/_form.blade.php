@@ -1,3 +1,7 @@
+@push('scripts')
+    <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
+@endpush
+
 <div class="form-group">
   <label for="title" class="control-label">Title</label>
 
@@ -14,6 +18,12 @@
   <label for="body" class="control-label">Body</label>
 
   <textarea id="body" type="text" class="form-control" name="body" autofocus>{{ $petition->body }}</textarea>
+   <script>
+      window.addEventListener('load', function() {
+        CKEDITOR.replace( 'body' ); 
+      });
+      
+  </script>
 </div>
 
 <div class="form-group">

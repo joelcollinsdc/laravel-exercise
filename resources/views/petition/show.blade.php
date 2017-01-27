@@ -7,7 +7,7 @@
 </div>
 
 <div class='petition-body'>
-  {{$petition->body}}
+  {!! $petition->body !!}
 </div>
 
 <div class='col-md-6 col-md-offset-3'>
