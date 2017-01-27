@@ -8,10 +8,10 @@ use Illuminate\Http\Request;
 class AdminPetitionController extends Controller
 {
     //TODO best way?
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     /**
      * Display a listing of the resource.

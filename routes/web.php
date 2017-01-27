@@ -20,7 +20,11 @@ Route::get('petition/{id}', 'PetitionController@show')->name('petition.public');
 Route::match(['post', 'put', 'patch'], 'petition/{petition}',
     'PetitionController@sign')->name('petition.sign');
 
-Auth::routes();
+//Auth::routes();  not using user registration...
+// Authentication Routes...
+Route::get('login', 'Auth\LoginController@showLoginForm');
+Route::post('login', 'Auth\LoginController@login');
+Route::match(['get', 'post'], 'logout', 'Auth\LoginController@logout');
 
 Route::get('/home', 'HomeController@index');
 

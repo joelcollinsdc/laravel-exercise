@@ -11,7 +11,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(PetitionsTableSeeder::class);
+        $this->call(PetitionsAndSignaturesTableSeeder::class);
+        $this->call(UsersTableSeeder::class);
     }
 }
 
@@ -29,3 +30,16 @@ class PetitionsAndSignaturesTableSeeder extends Seeder
     factory(App\Signature::class, 100)->create();
   }
 }
+
+class UsersTableSeeder extends Seeder
+{
+  public function run()
+  {
+    DB::table('users')->insert([
+        'name' => 'admin',
+        'email' => 'admin@example.com',
+        'password' => bcrypt('example'),
+    ]);
+  }
+}
+
