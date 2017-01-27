@@ -2,6 +2,9 @@
 
 @section('content')
 
-{{$petition->thankyou}}
+<div class="jumbotron">
+  <h1>Thank You</h1>
+  <p class="lead">{{$petition->thankyou}}</p>
+</div>
 
 @endsection
