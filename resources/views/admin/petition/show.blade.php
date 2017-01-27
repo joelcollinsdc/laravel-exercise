@@ -22,6 +22,11 @@
 
       <dt>Body</dt>
       <dd>{!! $petition->body !!}</dd>
+
+      <dt>Image</dt>
+      @if ($petition->image)
+        <dd><img src="/storage/{{ $petition->image }}" class="petition-image" /></dd>
+      @endif
     </dl>
 
     <a class="btn btn-default" href="{{ URL::route('petition.public', $petition->id) }}">View Publicly</a>

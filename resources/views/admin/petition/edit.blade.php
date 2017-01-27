@@ -5,7 +5,7 @@
   @include('messages')
 
     <h1>Edit Petition</h1>
-    <form class="form-horizontal" role="form" method="POST" action="{{ url('/admin/petition', $petition->id) }}">
+    <form class="form-horizontal" role="form" method="POST" action="{{ url('/admin/petition', $petition->id) }}" enctype="multipart/form-data">
       {{ method_field('PATCH') }}
       <!-- TODO {{ csrf_field() }} -->
 

@@ -6,6 +6,10 @@
   <h1>{{$petition->title}}</h1>
 </div>
 
+@if ($petition->image)
+  <img src="/storage/{{ $petition->image }}" class="petition-image" />
+@endif
+
 <div class='petition-body'>
   {!! $petition->body !!}
 </div>

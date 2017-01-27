@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 
 class AdminPetitionController extends Controller
 {
-    //TODO best way?
+    //TODO constantly had trouble with my authentication sticking
+    //had to comment out this in development??
     public function __construct()
     {
         $this->middleware('auth');
@@ -62,6 +63,11 @@ class AdminPetitionController extends Controller
         $petition->thankyou = $request->thankyou;
         $petition->emailsubject = $request->emailsubject;
         $petition->emailbody = $request->emailbody;
+
+        if ($request->hasFile('image')) {
+            $path = $request->image->store('public');
+            $petition->image = str_replace('public/', '', $path);
+        }
 
         $petition->save();
         return redirect()->route('petition.show', $petition->id)
@@ -145,6 +151,12 @@ class AdminPetitionController extends Controller
         $petition->thankyou = $request->thankyou;
         $petition->emailsubject = $request->emailsubject;
         $petition->emailbody = $request->emailbody;
+
+        //TODO remove old files
+        if ($request->hasFile('image')) {
+            $path = $request->image->store('public');
+            $petition->image = str_replace('public/', '', $path);
+        }
 
         $petition->save();
         return redirect()

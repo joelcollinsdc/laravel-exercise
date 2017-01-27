@@ -6,7 +6,7 @@
 
   
       <h1>New Petition</h1>
-      <form class="form-horizontal" role="form" method="POST" action="{{ url('/admin/petition') }}">
+      <form class="form-horizontal" role="form" method="POST" action="{{ url('/admin/petition') }}" enctype="multipart/form-data">
         <!-- TODO {{ csrf_field() }} -->
 
         @include('admin.petition._form', ['petition' => new \App\Petition ])

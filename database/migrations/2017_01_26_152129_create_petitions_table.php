@@ -21,6 +21,7 @@ class CreatePetitionsTable extends Migration
             $table->text('thankyou');
             $table->string('emailsubject');
             $table->text('emailbody');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

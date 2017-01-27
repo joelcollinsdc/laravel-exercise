@@ -5,7 +5,7 @@
 ## Issues
 
 * Having issues with sessions on my dev environment... couldn't get things like csrf token to validate.  Temporarily disabled to work around this.
-
+* Image / Media field requirement: I missed the boat on this and basically just added an image field to the petition table.  It's clearly an underwhelming approach but I wanted to demonstrate at least basic file handling.
 
 ## Further work needed
 

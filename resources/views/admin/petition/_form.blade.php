@@ -19,7 +19,11 @@
     <label for="body" class="control-label">Body</label>
 
     <textarea id="body" type="text" class="form-control" name="body" >{{ $petition->body }}</textarea>
-    
+  </div>
+
+  <div class="form-group">
+    <label for="image" class="control-label">Image</label>
+    <input type="file" name="image" class="form-control" />
   </div>
 
   <div class="form-group">
