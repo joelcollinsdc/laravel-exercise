@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests;
 
+use App\Mail\PetitionSigned;
 use App\Petition;
 use App\Signature;
 
@@ -33,6 +34,9 @@ class PetitionController extends Controller
     $signature->phone = $request->phone;
     $signature->petition_id = $petition->id;
     $signature->save();
+
+    //TODO move to a queue
+    Mail::to($request->email)->send(new PetitionSigned($petition));
 
     return view('petition.thankyou', ['petition' => $petition]);
   }
