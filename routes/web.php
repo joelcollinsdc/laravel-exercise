@@ -20,13 +20,10 @@ Route::get('petition/{id}', 'PetitionController@show')->name('petition.public');
 Route::match(['post', 'put', 'patch'], 'petition/{petition}',
     'PetitionController@sign')->name('petition.sign');
 
-//Auth::routes();  not using user registration...
-// Authentication Routes...
+//Auth::routes();  not using user registration, so not using this for now...
 Route::get('login', 'Auth\LoginController@showLoginForm');
 Route::post('login', 'Auth\LoginController@login');
 Route::match(['get', 'post'], 'logout', 'Auth\LoginController@logout');
-
-Route::get('/home', 'HomeController@index');
 
 Route::group(['prefix' => 'admin'], function () {
   Route::resource('petition', 'AdminPetitionController');
