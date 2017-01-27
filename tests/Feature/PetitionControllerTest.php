@@ -44,6 +44,7 @@ class PetitionControllerTest extends TestCase
             'name' => 'test',
         ));
 
+        //TODO not sure this is valid, its redirecting to home page??
         $this->assertEquals(302, $response->getStatusCode());
     }
 
@@ -56,6 +57,7 @@ class PetitionControllerTest extends TestCase
             'phone' => '123-123-1234',
         ));
 
+        
         $this->assertEquals(200, $response->getStatusCode());
     }
 }
