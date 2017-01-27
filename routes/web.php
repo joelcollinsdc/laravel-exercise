@@ -23,4 +23,10 @@ Route::get('/home', 'HomeController@index');
 
 Route::group(['prefix' => 'admin'], function () {
   Route::resource('petition', 'AdminPetitionController');
+  Route::match(['post', 'put', 'patch'], 
+    'petition/{petition}/publish', 
+    'AdminPetitionController@publish')->name('petition.publish');
+  Route::match(['post', 'put', 'patch'], 
+    'petition/{petition}/unpublish', 
+    'AdminPetitionController@unpublish')->name('petition.unpublish');
 });

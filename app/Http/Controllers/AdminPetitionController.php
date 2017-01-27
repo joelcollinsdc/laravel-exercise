@@ -36,7 +36,7 @@ class AdminPetitionController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.petition.create');
     }
 
     /**
@@ -47,7 +47,19 @@ class AdminPetitionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $this->validate($request, [
+            'title' => 'required',
+            
+        ]);
+
+        $petition = new Petition;
+        $petition->title = $request->title;
+        $petition->summary = $request->summary;
+        $petition->body = $request->body;
+
+        $petition->save();
+        return redirect()->route('petition.show', $petition->id)
+                        ->with('success','Petition created successfully');
     }
 
     /**
@@ -69,7 +81,37 @@ class AdminPetitionController extends Controller
      */
     public function edit(Petition $petition)
     {
-        //
+        return view('admin.petition.edit', [ 'petition' => $petition ]);
+    }
+
+    /**
+     * Publish Petition
+     *
+     * @param  \App\Petition  $petition
+     * @return \Illuminate\Http\Response
+     */
+    public function publish(Petition $petition)
+    {
+        $petition->published = true;
+        $petition->save();
+
+        return redirect()->route('petition.show', $petition->id)
+                        ->with('success','Petition published');
+    }
+
+    /**
+     * Unpublish Petition
+     *
+     * @param  \App\Petition  $petition
+     * @return \Illuminate\Http\Response
+     */
+    public function unpublish(Petition $petition)
+    {
+        $petition->published = false;
+        $petition->save();
+
+        return redirect()->route('petition.show', $petition->id)
+                        ->with('success','Petition unpublished');
     }
 
     /**
@@ -81,7 +123,21 @@ class AdminPetitionController extends Controller
      */
     public function update(Request $request, Petition $petition)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required',
+            'summary' => 'required',
+            'body' => 'required',
+            
+        ]);
+
+        
+        $petition->title = $request->title;
+        $petition->summary = $request->summary;
+        $petition->body = $request->body;
+
+        $petition->save();
+        return redirect()->route('petition.show', $petition->id)
+                        ->with('success','Petition created successfully');
     }
 
     /**
@@ -92,6 +148,8 @@ class AdminPetitionController extends Controller
      */
     public function destroy(Petition $petition)
     {
-        //
+        $petition->delete();
+        return redirect()->route('petition.index')
+                        ->with('success','Petition deleted successfully');
     }
 }
