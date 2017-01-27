@@ -35,4 +35,27 @@ class PetitionControllerTest extends TestCase
 
         $response->assertStatus(404);
     }
+
+    public function testBadStoreSignature()
+    {
+        $response = $this->call('POST', route('petition.sign', 1), array(
+            '_token' => csrf_token(),
+            'email' => 'test@example.com',
+            'name' => 'test',
+        ));
+
+        $this->assertEquals(302, $response->getStatusCode());
+    }
+
+    public function testStoreSignature()
+    {
+        $response = $this->call('POST', route('petition.sign', 1), array(
+            '_token' => csrf_token(),
+            'email' => 'test@example.com',
+            'name' => 'test',
+            'phone' => '123-123-1234',
+        ));
+
+        $this->assertEquals(200, $response->getStatusCode());
+    }
 }
