@@ -15,15 +15,13 @@ class AdminPetitionController extends Controller
 
     /**
      * Display a listing of the resource.
-     *
+     * TODO: pagination
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
         
         $petitions = Petition::all();
-   // load the view and pass the nerds
-       
         
         return view('admin.petition.index',
             [ 'petitions' => $petitions ]);
@@ -49,13 +47,21 @@ class AdminPetitionController extends Controller
     {
          $this->validate($request, [
             'title' => 'required',
-            
+            'summary' => 'required',
+            'body' => 'required',
+            'thankyou' => 'required',
+            'emailsubject' => 'required',
+            'emailbody' => 'required'
         ]);
 
+        //TODO refactor this
         $petition = new Petition;
         $petition->title = $request->title;
         $petition->summary = $request->summary;
         $petition->body = $request->body;
+        $petition->thankyou = $request->thankyou;
+        $petition->emailsubject = $request->emailsubject;
+        $petition->emailbody = $request->emailbody;
 
         $petition->save();
         return redirect()->route('petition.show', $petition->id)
@@ -127,17 +133,23 @@ class AdminPetitionController extends Controller
             'title' => 'required',
             'summary' => 'required',
             'body' => 'required',
-            
+            'thankyou' => 'required',
+            'emailsubject' => 'required',
+            'emailbody' => 'required'
         ]);
 
-        
+        //TODO refactor this
         $petition->title = $request->title;
         $petition->summary = $request->summary;
         $petition->body = $request->body;
+        $petition->thankyou = $request->thankyou;
+        $petition->emailsubject = $request->emailsubject;
+        $petition->emailbody = $request->emailbody;
 
         $petition->save();
-        return redirect()->route('petition.show', $petition->id)
-                        ->with('success','Petition created successfully');
+        return redirect()
+            ->route('petition.show', $petition->id)
+            ->with('success','Petition created successfully');
     }
 
     /**
@@ -149,7 +161,8 @@ class AdminPetitionController extends Controller
     public function destroy(Petition $petition)
     {
         $petition->delete();
-        return redirect()->route('petition.index')
-                        ->with('success','Petition deleted successfully');
+        return redirect()
+            ->route('petition.index')
+            ->with('success','Petition deleted successfully');
     }
 }

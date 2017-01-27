@@ -52,14 +52,18 @@
 
                 <div>
                   <h3>Signatures</h3>
-                  <table>
-                  @foreach ($petition->signatures as $signature)
-                    <tr>
-                      <td>{{$signature->name}}</td>
-                      <td>{{$signature->phone}}</td>
-                      <td>{{$signature->email}}</td>
-                    </tr>
-                  @endforeach
+                  @if ($petition->signatures->count() === 0)
+                    No signatures yet...
+                  @else
+                    <table>
+                    @foreach ($petition->signatures as $signature)
+                      <tr>
+                        <td>{{$signature->name}}</td>
+                        <td>{{$signature->phone}}</td>
+                        <td>{{$signature->email}}</td>
+                      </tr>
+                    @endforeach
+                  @endif
                   </table>
                 </div>
 
