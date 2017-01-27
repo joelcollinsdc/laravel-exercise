@@ -18,6 +18,9 @@ class CreatePetitionsTable extends Migration
             $table->string('title');
             $table->text('summary');
             $table->text('body');
+            $table->text('thankyou');
+            $table->string('emailsubject');
+            $table->text('emailbody');
             $table->timestamps();
         });
     }

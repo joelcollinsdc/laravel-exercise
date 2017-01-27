@@ -26,6 +26,18 @@ $factory->define(App\Petition::class, function (Faker\Generator $faker) {
         'published' => true,
         'summary' => join("\n\n", $faker->paragraphs(mt_rand(1, 3))),
         'body' => join("\n\n", $faker->paragraphs(mt_rand(3, 6))),
+        'thankyou' => join("\n\n", $faker->paragraphs(mt_rand(1, 3))),
+        'emailsubject' => $faker->sentence(mt_rand(3, 10)),
+        'emailbody' => join("\n\n", $faker->paragraphs(mt_rand(1, 3))),
+    ];
+});
+
+$factory->define(App\Signature::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->name,
+        'email' => $faker->email,
+        'phone' => $faker->phoneNumber,
+        'petition_id' => rand(1,20),
     ];
 });
 

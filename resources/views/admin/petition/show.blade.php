@@ -30,7 +30,8 @@
                     <dd>{{$petition->body}}</dd>
                   </dl>
 
-                  
+                  <a class="btn btn-default" href="{{ URL::route('petition.public', $petition->id) }}">View Publicly</a>
+
                   <a class="btn btn-default" href="{{ URL::route('petition.edit', $petition->id) }}">Edit</a>
 
                   @if ($petition->published == false)
@@ -48,6 +49,20 @@
                   @endif
                 </div>
                   
+
+                <div>
+                  <h3>Signatures</h3>
+                  <table>
+                  @foreach ($petition->signatures as $signature)
+                    <tr>
+                      <td>{{$signature->name}}</td>
+                      <td>{{$signature->phone}}</td>
+                      <td>{{$signature->email}}</td>
+                    </tr>
+                  @endforeach
+                  </table>
+                </div>
+
             </div>
         </div>
     </div>

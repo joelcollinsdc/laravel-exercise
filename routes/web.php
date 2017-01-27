@@ -15,7 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('petition/{id}', 'PetitionController@show');
+Route::get('petition/{id}', 'PetitionController@show')->name('petition.public');
+
+Route::match(['post', 'put', 'patch'],
+    'petition/{petition}/sign',
+    'PetitionController@sign')->name('petition.sign');
 
 Auth::routes();
 
